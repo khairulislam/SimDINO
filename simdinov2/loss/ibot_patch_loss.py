@@ -113,7 +113,7 @@ class PatchDINOCenter(nn.Module):
 
     @torch.no_grad()
     def apply_center_update(self):
-        if self.updated is False:
+        if hasattr(self, "updated") and self.updated is False:
             world_size = dist.get_world_size() if dist.is_initialized() else 1
 
             if self.reduce_handle is not None:
