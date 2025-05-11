@@ -59,7 +59,7 @@ class DINOHead(nn.Module):
         self.apply(self._init_weights)
         if not remove_last_layer:
             self.last_layer = weight_norm(nn.Linear(bottleneck_dim, out_dim, bias=False))
-            self.last_layer.weight_g.data.fill_(1)
+            self.last_layer.weight.data.fill_(1)
         self.normalize = normalize
         self.remove_last_layer = remove_last_layer
 
