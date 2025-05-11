@@ -364,7 +364,8 @@ class MetricLogger(object):
                 '{meters}',
                 'time: {time}',
                 'data: {data}',
-                'max mem: {memory:.0f}'
+                'max mem: {memory:.0f}',
+                'avg mem: {avg_gpu:.0f}'
             ])
         else:
             log_msg = self.delimiter.join([
@@ -388,7 +389,8 @@ class MetricLogger(object):
                         i, len(iterable), eta=eta_string,
                         meters=str(self),
                         time=str(iter_time), data=str(data_time),
-                        memory=torch.cuda.max_memory_allocated() / MB))
+                        memory=torch.cuda.max_memory_allocated() / MB),
+                        avg_gpu=torch.cuda.memory_allocated() / MB)
                 else:
                     print(log_msg.format(
                         i, len(iterable), eta=eta_string,
