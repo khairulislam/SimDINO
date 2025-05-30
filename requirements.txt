@@ -1,11 +1,12 @@
---extra-index-url https://download.pytorch.org/whl/cu118
-torch==2.5.1
+# comment this out, if you don't want it to rewrite existing torch env
+--extra-index-url https://download.pytorch.org/whl/cu128
+torch
 torchvision
 omegaconf
 torchmetrics
 fvcore
 iopath
-xformers==0.0.29
+xformers # ==0.0.29
 submitit
 --extra-index-url https://pypi.nvidia.com
 cuml-cu11

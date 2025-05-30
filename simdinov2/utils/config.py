@@ -50,7 +50,7 @@ def get_cfg_from_args(args):
 
 
 def default_setup(args, enable_dist: bool = True):
-    if enable_dist:
+    if enable_dist and not dist.is_enabled():
         dist.enable(overwrite=True)
     seed = getattr(args, "seed", 0)
     rank = dist.get_global_rank()
