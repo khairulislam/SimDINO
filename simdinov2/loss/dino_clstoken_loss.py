@@ -111,7 +111,9 @@ class MCRLoss(DINOCenter):
             case 0:  # only compute expansion on global views
                 expa_feat = student_feat[:len(teacher_feat)]
             case 1:  # center with teacher
-                expa_feat = (student_feat[:len(teacher_feat)] + teacher_feat) / 2
+                # print(f'DINO CLSTOKEN {teacher_feat.shape}, {student_feat.shape}')
+                # here teacher_feat was getting one extra dimension at 1
+                expa_feat = (student_feat[:len(teacher_feat)] + teacher_feat.squeeze()) / 2
         expa_loss = self.calc_expansion(expa_feat)
         loss = - self.coeff * comp_loss - expa_loss
         return loss, {"loss": loss.detach(), "comp_loss":comp_loss.detach(), "global_comp_loss":global_comp_loss.detach(), "expa_loss":expa_loss.detach()}
