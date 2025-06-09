@@ -142,6 +142,8 @@ class SimSSLMetaArch(nn.Module):
         raise NotImplementedError
 
     def backprop_loss(self, loss):
+        # https://github.com/RobinWu218/SimDINO/issues/16
+        # fixed by upgrading to PyTorch to 2.6.0 and xformers to 0.0.29.post3
         if self.fp16_scaler is not None:
             self.fp16_scaler.scale(loss).backward()
         else:

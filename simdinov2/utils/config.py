@@ -40,7 +40,7 @@ def write_config(cfg, output_dir, name="config.yaml"):
 
 
 def get_cfg_from_args(args):
-    default_cfg = OmegaConf.create(load_config(args.base_config))
+    default_cfg = OmegaConf.create(load_config("ssl_default_config"))
     cfg = OmegaConf.load(args.config_file)
     cfg = OmegaConf.merge(default_cfg, cfg, OmegaConf.from_cli(args.opts))
     
